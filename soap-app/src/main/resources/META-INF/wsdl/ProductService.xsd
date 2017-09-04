@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   elementFormDefault="qualified" 
+      xmlns:tns="http://com.cubic.net/productservice/1.0"
+      xmlns="http://com.cubic.net/productservice/1.0"
+      targetNamespace="http://com.cubic.net/productservice/1.0">
+  
+  <xsd:element name="ProductSearchRequest" type="ProductSearchCriteria" />
+  <xsd:element name="ProductSearchResponse" type="ProductSearchResponseType" />
+
+  <xsd:complexType name="ProductSearchCriteria">
+      <xsd:sequence>
+      	<xsd:element name="productName" type="xsd:string" />
+      </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:element name="ProductInfo">
+	  <xsd:complexType>
+	      <xsd:sequence>
+		      <xsd:element name="productName" type="xsd:string" />
+		      <xsd:element name="productDesc" type="xsd:string" />
+		      <xsd:element name="productId" type="xsd:integer" />
+	      </xsd:sequence>
+	  </xsd:complexType> 
+  </xsd:element> 
+
+  <xsd:complexType name="ProductSearchResponseType">
+      <xsd:sequence>
+		<xsd:element maxOccurs="unbounded" ref="ProductInfo"/>
+      </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

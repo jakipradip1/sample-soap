@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   elementFormDefault="qualified" 
+      xmlns:tns="http://www.jakipradip.com/CustomerService/"
+      xmlns="http://www.jakipradip.com/CustomerService/"
+      targetNamespace="http://www.jakipradip.com/CustomerService/">
+  
+  <xsd:element name="CustomerSearchRequestString" type="CustomerSearchCriteriaString" />
+  <xsd:element name="CustomerSearchRequestLong" type="CustomerSearchCriteriaLong" />
+  <xsd:element name="CustomerSaveRequest" type="CustomerVO" />
+  <xsd:element name="CustomerSearchResponseOne" type="CustomerVO" />
+  <xsd:element name="CustomerSearchResponseMany" type="CustomerSearchResponseType" />
+
+  <xsd:complexType name="CustomerSearchCriteriaString">
+      <xsd:sequence>
+      	<xsd:element name="productName" type="xsd:string" />
+      </xsd:sequence>
+  </xsd:complexType>
+  
+   <xsd:complexType name="CustomerSearchCriteriaLong">
+      <xsd:sequence>
+      	<xsd:element name="productName" type="xsd:integer" />
+      </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="CustomerVO">
+      <xsd:sequence>
+	      <xsd:element name="firstName" type="xsd:string" />
+	      <xsd:element name="lastName" type="xsd:string" />
+	      <xsd:element name="id" type="xsd:integer" />
+      </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:element name="Customer">
+  	<xsd:complexType>
+  		<xsd:sequence>
+  			<xsd:element name="customer" type="CustomerVO"/>
+  		</xsd:sequence>
+  	</xsd:complexType>
+  </xsd:element>
+  
+  <xsd:complexType name="CustomerSearchResponseType">
+      <xsd:sequence>
+		<xsd:element maxOccurs="unbounded" ref="Customer"/>
+      </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

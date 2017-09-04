@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="productService"
+  targetNamespace="http://com.cubic.net/productservice/1.0"
+  xmlns:tns="http://com.cubic.net/productservice/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://com.cubic.net/productservice/1.0">
+      <xsd:import schemaLocation="ProductService.xsd"
+        namespace="http://com.cubic.net/productservice/1.0" />
+    </xsd:schema>
+  </wsdl:types>
+  
+  <wsdl:message name="ProductSearchRequest">
+    <wsdl:part name="ProductSearchRequest" element="tns:ProductSearchRequest" />
+  </wsdl:message>
+  
+  <wsdl:message name="ProductSearchResponse">
+    <wsdl:part name="ProductSearchResponse" element="tns:ProductSearchResponse" />
+  </wsdl:message>
+  
+  <wsdl:portType name="ProductServicePortType">
+    <wsdl:operation name="searchProduct">
+      <wsdl:input name="ProductSearchRequest" message="tns:ProductSearchRequest" />
+      <wsdl:output name="ProductSearchResponse" message="tns:ProductSearchResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  
+  <wsdl:binding name="ProductServiceBinding" type="tns:ProductServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="searchProduct">
+      <soap:operation style="document" soapAction="http://com.cubic.net/ProductService/searchProduct" />
+      <wsdl:input name="ProductSearchRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ProductSearchResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  
+  <wsdl:service name="ProductService">
+    <wsdl:port name="ProductServicePort" binding="tns:ProductServiceBinding">
+      <soap:address location="/service/productService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
